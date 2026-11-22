@@ -42,7 +42,7 @@ SM12x (RTX Spark) uses upstream's Triton paths, so no native kernels are needed:
 
 ## Known issue
 
-KV capacity is low: 22.35 GiB of KV gives 46,756 tokens (~500 KB/token), so 32K context needs
-~16 GiB. 0.32's hybrid allocator sizes the sliding-window and short-conv caches of all 48 layer
-visits per token like full attention. Upstream's allocation-policy refactor (#61452) may be what lets
-its recipe reach 262K on Spark; not ported.
+KV capacity is lower than upstream's: measured 46,756 tokens from 22.35 GiB at `max-model-len`
+32768, and 131,851 tokens from 36 GB at 65536. 0.32's hybrid allocator sizes the sliding-window and
+short-conv caches of all 48 layer visits per token. Upstream's allocation-policy refactor (#61452)
+may be what lets its recipe reach 262K on Spark; not ported.
