@@ -1,0 +1,14 @@
+# First-load test for the Inkling 2 Mini backport (no DSpark, short context).
+api-server-count: 1
+served-model-name: thinkingmachines/Inkling-2-Mini
+host: 127.0.0.1
+port: 8001
+api-key: rose
+max-model-len: 32768
+max-num-seqs: 4
+kv-cache-memory-bytes: 24000000000
+enable-prefix-caching: true
+tensor-parallel-size: 1
+enable-auto-tool-choice: true
+tool-call-parser: inkling
+reasoning-parser: inkling

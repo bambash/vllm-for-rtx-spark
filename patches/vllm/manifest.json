@@ -56,7 +56,8 @@
     "0015-yaml-selected-parser-booleans.patch",
     "0016-upstream-dependency-lifecycle.patch",
     "0017-skip-unused-flashinfer-metadata.patch",
-    "0018-local-monitor.patch"
+    "0018-local-monitor.patch",
+    "0019-inkling2-mini.patch"
   ],
   "copy": []
 }
