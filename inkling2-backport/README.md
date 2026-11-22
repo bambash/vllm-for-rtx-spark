@@ -40,9 +40,9 @@ SM12x (RTX Spark) uses upstream's Triton paths, so no native kernels are needed:
 - Tool calling round trip (`tool-call-parser: inkling`), image input.
 - Fork unit tests: the 10 failures under `-p '*_test.py'` are identical with and without this patch.
 
-## Known issue
+## Context length
 
-KV capacity is lower than upstream's: measured 46,756 tokens from 22.35 GiB at `max-model-len`
-32768, and 131,851 tokens from 36 GB at 65536. 0.32's hybrid allocator sizes the sliding-window and
-short-conv caches of all 48 layer visits per token. Upstream's allocation-policy refactor (#61452)
-may be what lets its recipe reach 262K on Spark; not ported.
+The full 1,048,576-token context works: with `kv-cache-memory-bytes: 60000000000` vLLM reports
+1,255,627 tokens of KV cache, and a 973K-token prompt recalled a fact placed 5% in (22 min prefill,
+~740 tok/s; 154K tokens took 89 s). Reported capacity depends on `max-model-len` and `max-num-seqs`,
+not only on memory (22.35 GiB gave 46,756 tokens at 32K), so measure rather than extrapolate.
